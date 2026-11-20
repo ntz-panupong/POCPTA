@@ -42,8 +42,10 @@ CLASS zcl_qm_spec_actiont DEFINITION
     TYPES:
       tt_action_keys   TYPE TABLE FOR ACTION IMPORT zi_qm_spect~NewVersion,
       tt_action_result TYPE TABLE FOR ACTION RESULT zi_qm_spect~NewVersion,
-      tt_failed_hdr    TYPE TABLE FOR FAILED LATE zi_qm_spect,
-      tt_reported_hdr  TYPE TABLE FOR REPORTED LATE zi_qm_spect.
+      tt_copy_keys     TYPE TABLE FOR ACTION IMPORT zi_qm_spect~Copy,
+      tt_copy_result   TYPE TABLE FOR ACTION RESULT zi_qm_spect~Copy,
+      tt_failed_hdr    TYPE TABLE FOR FAILED EARLY zi_qm_spect,
+      tt_reported_hdr  TYPE TABLE FOR REPORTED EARLY zi_qm_spect.
 
     "! <p class="shorttext synchronized">Get next 10-digit Document No.</p>
     "!
@@ -90,8 +92,8 @@ CLASS zcl_qm_spec_actiont DEFINITION
     "! @parameter ct_failed   | Failed keys
     "! @parameter ct_reported | Reported messages
     METHODS copy_specification
-      IMPORTING it_keys     TYPE tt_action_keys
-      CHANGING  ct_result   TYPE tt_action_result
+      IMPORTING it_keys     TYPE tt_copy_keys
+      CHANGING  ct_result   TYPE tt_copy_result
                 ct_failed   TYPE tt_failed_hdr
                 ct_reported TYPE tt_reported_hdr.
 
@@ -158,15 +160,17 @@ CLASS zcl_qm_spec_actiont IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD copy_specification.
+    DATA lt_res TYPE tt_action_result.
     clone_entity(
       EXPORTING
-        it_keys       = it_keys
+        it_keys       = CORRESPONDING #( it_keys )
         iv_is_new_doc = abap_true
       CHANGING
-        ct_result     = ct_result
+        ct_result     = lt_res
         ct_failed     = ct_failed
         ct_reported   = ct_reported
     ).
+    ct_result = CORRESPONDING #( lt_res ).
   ENDMETHOD.
 
   METHOD clone_entity.
@@ -200,7 +204,7 @@ CLASS zcl_qm_spec_actiont IMPLEMENTATION.
           INTO @DATA(lv_max_ver).
         SELECT FROM zqmtsphdt
           FIELDS MAX( version ) AS max_draft_ver
-          WHERE doc_no = @ls_hdr-DocNo
+          WHERE docno = @ls_hdr-DocNo
           INTO @DATA(lv_max_draft_ver).
         IF lv_max_draft_ver > lv_max_ver.
           lv_max_ver = lv_max_draft_ver.
@@ -208,7 +212,8 @@ CLASS zcl_qm_spec_actiont IMPLEMENTATION.
         lv_target_ver = CONV zelm_qm_spec_versiont( lv_max_ver + 1 ).
       ENDIF.
 
-      DATA(lt_create_hdr) = VALUE TABLE FOR CREATE zi_qm_spect(
+      DATA lt_create_hdr TYPE TABLE FOR CREATE zi_qm_spect.
+      lt_create_hdr = VALUE #(
         ( %cid          = |HDR_{ sy-tabix }|
           %is_draft     = if_abap_behv=>mk-on
           DocNo         = lv_target_doc
@@ -231,7 +236,8 @@ CLASS zcl_qm_spec_actiont IMPLEMENTATION.
 
       IF ls_mapped-specheader IS NOT INITIAL.
         DATA(ls_new_hdr) = ls_mapped-specheader[ 1 ].
-        DATA(lt_create_itm) = VALUE TABLE FOR CREATE zi_qm_spect\_Item(
+        DATA lt_create_itm TYPE TABLE FOR CREATE zi_qm_spect\_Item.
+        lt_create_itm = VALUE #(
           ( %tky    = ls_new_hdr-%tky
             %target = VALUE #(
               FOR ls_itm IN lt_items WHERE ( DocNo = ls_hdr-DocNo AND Version = ls_hdr-Version )

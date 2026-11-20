@@ -200,27 +200,43 @@ CLASS lhc_specheader IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD NewVersion.
+    DATA lt_result   TYPE zcl_qm_spec_actiont=>tt_action_result.
+    DATA lt_failed   TYPE zcl_qm_spec_actiont=>tt_failed_hdr.
+    DATA lt_reported TYPE zcl_qm_spec_actiont=>tt_reported_hdr.
+
     DATA(lo_helper) = NEW zcl_qm_spec_actiont( ).
     lo_helper->create_new_version(
       EXPORTING
         it_keys     = CORRESPONDING #( keys )
       CHANGING
-        ct_result   = result
-        ct_failed   = failed-specheader
-        ct_reported = reported-specheader
+        ct_result   = lt_result
+        ct_failed   = lt_failed
+        ct_reported = lt_reported
     ).
+
+    result              = CORRESPONDING #( lt_result ).
+    failed-specheader   = CORRESPONDING #( BASE ( failed-specheader ) lt_failed ).
+    reported-specheader = CORRESPONDING #( BASE ( reported-specheader ) lt_reported ).
   ENDMETHOD.
 
   METHOD Copy.
+    DATA lt_result   TYPE zcl_qm_spec_actiont=>tt_copy_result.
+    DATA lt_failed   TYPE zcl_qm_spec_actiont=>tt_failed_hdr.
+    DATA lt_reported TYPE zcl_qm_spec_actiont=>tt_reported_hdr.
+
     DATA(lo_helper) = NEW zcl_qm_spec_actiont( ).
     lo_helper->copy_specification(
       EXPORTING
         it_keys     = CORRESPONDING #( keys )
       CHANGING
-        ct_result   = result
-        ct_failed   = failed-specheader
-        ct_reported = reported-specheader
+        ct_result   = lt_result
+        ct_failed   = lt_failed
+        ct_reported = lt_reported
     ).
+
+    result              = CORRESPONDING #( lt_result ).
+    failed-specheader   = CORRESPONDING #( BASE ( failed-specheader ) lt_failed ).
+    reported-specheader = CORRESPONDING #( BASE ( reported-specheader ) lt_reported ).
   ENDMETHOD.
 
   METHOD Print.
@@ -325,10 +341,14 @@ CLASS lhc_specitem DEFINITION INHERITING FROM cl_abap_behavior_handler.
     METHODS movedown FOR MODIFY
       IMPORTING keys FOR ACTION SpecItem~MoveDown RESULT result.
 
+    TYPES:
+      tt_item_keys   TYPE TABLE FOR ACTION IMPORT zi_qm_spect\SpecItem~MoveUp,
+      tt_item_result TYPE TABLE FOR ACTION RESULT zi_qm_spect\SpecItem~MoveUp.
+
     METHODS move_row
-      IMPORTING it_keys   TYPE TABLE FOR ACTION IMPORT zi_qm_specitemt~MoveUp
+      IMPORTING it_keys   TYPE tt_item_keys
                 iv_dir    TYPE i
-      CHANGING  ct_result TYPE TABLE FOR ACTION RESULT zi_qm_specitemt~MoveUp.
+      CHANGING  ct_result TYPE tt_item_result.
 ENDCLASS.
 
 CLASS lhc_specitem IMPLEMENTATION.
@@ -433,10 +453,12 @@ CLASS lhc_specitem IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD MoveDown.
+    DATA lt_res TYPE tt_item_result.
     move_row(
-      EXPORTING it_keys   = keys
+      EXPORTING it_keys   = CORRESPONDING #( keys )
                 iv_dir    = 1
-      CHANGING  ct_result = result ).
+      CHANGING  ct_result = lt_res ).
+    result = CORRESPONDING #( lt_res ).
   ENDMETHOD.
 
   METHOD move_row.
