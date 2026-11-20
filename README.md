@@ -15,7 +15,7 @@ abapGit repository for **Product Specification Form** (`ZPOCTESTTA`) on **SAP S/
 | **Behavior Definitions** | `ZI_QM_SPEC` / `ZC_QM_SPEC` | Managed + Draft + Early Numbering + Actions |
 | **Behavior Pool** | `ZBP_I_QM_SPEC` | EML handlers, validations, features |
 | **Business Logic** | `ZCL_QM_SPEC_ACTION` | Doc/Version numbering & clone helpers |
-| **Service Definition** | `ZSD_QM_SPEC_SRV` | Exposes `SpecHeader`, `SpecItem`, `BusinessUser` |
+| **Service Definition** | `ZSD_QM_SPEC_TOM_SRV` | Exposes `SpecHeader`, `SpecItem`, `BusinessUser` |
 | **Service Binding** | `ZSB_QM_SPEC_UI` | OData V4 - UI |
 
 ## Implemented Features & Actions
