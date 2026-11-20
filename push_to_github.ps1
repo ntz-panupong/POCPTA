@@ -1,10 +1,19 @@
 param(
-    [Parameter(Mandatory = $true)]
-    [string]$RepoUrl
+    [string]$RepoUrl = "https://github.com/ntz-panupong/POCPTA.git",
+    [string]$CommitMessage = "Update POCPTA"
 )
 
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
+
+if (-not (Test-Path ".git")) {
+    git init
+}
+
+git add -A
+if (git status --porcelain) {
+    git commit -m $CommitMessage
+}
 
 if (-not (git remote | Select-String -Pattern "^origin$" -Quiet)) {
     git remote add origin $RepoUrl
