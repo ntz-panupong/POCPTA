@@ -8,7 +8,7 @@
   },
   presentationVariant: [ {
     sortOrder:      [ { by: 'SectionNo', direction: #ASC },
-                      { by: 'LineNo', direction: #ASC } ],
+                      { by: 'LineNumber', direction: #ASC } ],
     visualizations: [ { type: #AS_LINEITEM } ]
   } ]
 }
@@ -57,7 +57,7 @@ annotate entity ZC_QM_SPECITEMT with
     fieldGroup: [ { qualifier: 'LineDetail', position: 30 } ]
   }
   @EndUserText.label: 'Line No.'
-  LineNo;
+  LineNumber;
 
   @UI: {
     lineItem:   [ { position: 40, importance: #HIGH } ],

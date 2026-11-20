@@ -133,7 +133,7 @@ CLASS zcl_qm_spec_actiont IMPLEMENTATION.
 
   METHOD get_next_line_no.
     SELECT FROM zi_qm_specitemt WITH PRIVILEGED ACCESS
-      FIELDS MAX( LineNo ) AS max_line
+      FIELDS MAX( LineNumber ) AS max_line
       WHERE DocNo   = @iv_doc_no
         AND Version = @iv_version
       INTO @DATA(lv_max_line).
@@ -235,10 +235,10 @@ CLASS zcl_qm_spec_actiont IMPLEMENTATION.
           ( %tky    = ls_new_hdr-%tky
             %target = VALUE #(
               FOR ls_itm IN lt_items WHERE ( DocNo = ls_hdr-DocNo AND Version = ls_hdr-Version )
-              ( %cid         = |ITM_{ ls_itm-SectionNo }_{ ls_itm-LineNo }|
+              ( %cid         = |ITM_{ ls_itm-SectionNo }_{ ls_itm-LineNumber }|
                 %is_draft    = if_abap_behv=>mk-on
                 SectionNo    = ls_itm-SectionNo
-                LineNo       = ls_itm-LineNo
+                LineNumber   = ls_itm-LineNumber
                 SectionTitle = ls_itm-SectionTitle
                 Col2Label    = ls_itm-Col2Label
                 Col3Label    = ls_itm-Col3Label
@@ -258,7 +258,7 @@ CLASS zcl_qm_spec_actiont IMPLEMENTATION.
           MODIFY ENTITIES OF zi_qm_spect IN LOCAL MODE
             ENTITY SpecHeader
             CREATE BY \_Item
-            FIELDS ( SectionNo LineNo SectionTitle Col2Label Col3Label Topic TopicBold TopicItalic
+            FIELDS ( SectionNo LineNumber SectionTitle Col2Label Col3Label Topic TopicBold TopicItalic
                      Description DescBold DescItalic Method MethodBold MethodItalic )
             WITH lt_create_itm
             FAILED   DATA(ls_itm_failed)

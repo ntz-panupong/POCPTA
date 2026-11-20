@@ -7,7 +7,7 @@ define view entity ZC_QM_SPECITEMT
   key DocNo,
   key Version,
   key SectionNo,
-  key LineNo,
+  key LineNumber,
       SectionTitle,
       Col2Label,
       Col3Label,

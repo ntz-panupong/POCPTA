@@ -14,7 +14,7 @@ define view entity ZI_QM_SPECITEMT
   key doc_no                as DocNo,
   key version               as Version,
   key section_no            as SectionNo,
-  key line_no               as LineNo,
+  key line_no               as LineNumber,
       section_title         as SectionTitle,
       col2_label            as Col2Label,
       col3_label            as Col3Label,

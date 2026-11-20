@@ -90,7 +90,7 @@ CLASS lhc_specheader IMPLEMENTATION.
     LOOP AT entities INTO DATA(ls_parent).
       READ ENTITIES OF zi_qm_spect IN LOCAL MODE
         ENTITY SpecHeader BY \_Item
-        FIELDS ( SectionNo LineNo )
+        FIELDS ( SectionNo LineNumber )
         WITH VALUE #( ( %tky = ls_parent-%tky ) )
         RESULT DATA(lt_existing_items).
 
@@ -110,19 +110,19 @@ CLASS lhc_specheader IMPLEMENTATION.
           WHEN ls_target-SectionNo IS INITIAL THEN lv_next_sec
           ELSE ls_target-SectionNo ).
 
-        DATA(lv_line) = ls_target-LineNo.
+        DATA(lv_line) = ls_target-LineNumber.
         IF lv_line IS INITIAL.
           DATA lv_max_line TYPE zelm_qm_spec_linenot.
           CLEAR lv_max_line.
           LOOP AT lt_existing_items INTO ls_exist WHERE SectionNo = lv_sec.
-            IF ls_exist-LineNo > lv_max_line.
-              lv_max_line = ls_exist-LineNo.
+            IF ls_exist-LineNumber > lv_max_line.
+              lv_max_line = ls_exist-LineNumber.
             ENDIF.
           ENDLOOP.
           LOOP AT mapped-specitem INTO DATA(ls_mapped_itm)
                WHERE DocNo = ls_parent-DocNo AND Version = ls_parent-Version AND SectionNo = lv_sec.
-            IF ls_mapped_itm-LineNo > lv_max_line.
-              lv_max_line = ls_mapped_itm-LineNo.
+            IF ls_mapped_itm-LineNumber > lv_max_line.
+              lv_max_line = ls_mapped_itm-LineNumber.
             ENDIF.
           ENDLOOP.
           lv_line = COND zelm_qm_spec_linenot(
@@ -131,12 +131,12 @@ CLASS lhc_specheader IMPLEMENTATION.
         ENDIF.
 
         APPEND VALUE #(
-          %cid      = ls_target-%cid
-          %is_draft = ls_target-%is_draft
-          DocNo     = ls_parent-DocNo
-          Version   = ls_parent-Version
-          SectionNo = lv_sec
-          LineNo    = lv_line
+          %cid       = ls_target-%cid
+          %is_draft  = ls_target-%is_draft
+          DocNo      = ls_parent-DocNo
+          Version    = ls_parent-Version
+          SectionNo  = lv_sec
+          LineNumber = lv_line
         ) TO mapped-specitem.
       ENDLOOP.
     ENDLOOP.
@@ -286,14 +286,14 @@ CLASS lhc_specheader IMPLEMENTATION.
       MODIFY ENTITIES OF zi_qm_spect IN LOCAL MODE
         ENTITY SpecHeader
         CREATE BY \_Item
-        FIELDS ( SectionNo LineNo SectionTitle Col2Label Col3Label )
+        FIELDS ( SectionNo LineNumber SectionTitle Col2Label Col3Label )
         WITH VALUE #( (
           %tky    = ls_key-%tky
           %target = VALUE #( (
             %cid         = |SEC_{ lv_new_sec }_0001|
             %is_draft    = ls_key-%is_draft
             SectionNo    = lv_new_sec
-            LineNo       = '0001'
+            LineNumber   = '0001'
             SectionTitle = ls_key-%param-SectionTitle
             Col2Label    = ls_key-%param-Col2Label
             Col3Label    = ls_key-%param-Col3Label
@@ -335,7 +335,7 @@ CLASS lhc_specitem IMPLEMENTATION.
   METHOD get_instance_features.
     READ ENTITIES OF zi_qm_spect IN LOCAL MODE
       ENTITY SpecItem
-      FIELDS ( DocNo Version SectionNo LineNo )
+      FIELDS ( DocNo Version SectionNo LineNumber )
       WITH CORRESPONDING #( keys )
       RESULT DATA(lt_items).
 
@@ -389,15 +389,15 @@ CLASS lhc_specitem IMPLEMENTATION.
     LOOP AT lt_sel INTO DATA(ls_sel).
       READ ENTITIES OF zi_qm_spect IN LOCAL MODE
         ENTITY SpecHeader BY \_Item
-        FIELDS ( SectionNo LineNo )
+        FIELDS ( SectionNo LineNumber )
         WITH VALUE #( ( %is_draft = ls_sel-%is_draft DocNo = ls_sel-DocNo Version = ls_sel-Version ) )
         RESULT DATA(lt_all_items).
 
       DATA lv_max_line TYPE zelm_qm_spec_linenot.
       CLEAR lv_max_line.
       LOOP AT lt_all_items INTO DATA(ls_all) WHERE SectionNo = ls_sel-SectionNo.
-        IF ls_all-LineNo > lv_max_line.
-          lv_max_line = ls_all-LineNo.
+        IF ls_all-LineNumber > lv_max_line.
+          lv_max_line = ls_all-LineNumber.
         ENDIF.
       ENDLOOP.
       DATA(lv_new_line) = CONV zelm_qm_spec_linenot( lv_max_line + 1 ).
@@ -405,7 +405,7 @@ CLASS lhc_specitem IMPLEMENTATION.
       MODIFY ENTITIES OF zi_qm_spect IN LOCAL MODE
         ENTITY SpecHeader
         CREATE BY \_Item
-        FIELDS ( SectionNo LineNo SectionTitle Col2Label Col3Label )
+        FIELDS ( SectionNo LineNumber SectionTitle Col2Label Col3Label )
         WITH VALUE #( (
           %is_draft = ls_sel-%is_draft
           DocNo     = ls_sel-DocNo
@@ -414,7 +414,7 @@ CLASS lhc_specitem IMPLEMENTATION.
             %cid         = |ROW_{ ls_sel-SectionNo }_{ lv_new_line }|
             %is_draft    = ls_sel-%is_draft
             SectionNo    = ls_sel-SectionNo
-            LineNo       = lv_new_line
+            LineNumber   = lv_new_line
             SectionTitle = ls_sel-SectionTitle
             Col2Label    = ls_sel-Col2Label
             Col3Label    = ls_sel-Col3Label
@@ -454,9 +454,9 @@ CLASS lhc_specitem IMPLEMENTATION.
         RESULT DATA(lt_all_items).
 
       DELETE lt_all_items WHERE SectionNo <> ls_cur-SectionNo.
-      SORT lt_all_items BY LineNo ASCENDING.
+      SORT lt_all_items BY LineNumber ASCENDING.
 
-      READ TABLE lt_all_items TRANSPORTING NO FIELDS WITH KEY LineNo = ls_cur-LineNo.
+      READ TABLE lt_all_items TRANSPORTING NO FIELDS WITH KEY LineNumber = ls_cur-LineNumber.
       DATA(lv_adj_idx) = sy-tabix + iv_dir.
 
       IF lv_adj_idx < 1 OR lv_adj_idx > lines( lt_all_items ).
