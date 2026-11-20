@@ -3,8 +3,8 @@ strict ( 2 );
 with draft;
 
 define behavior for ZI_QM_SPEC alias SpecHeader
-persistent table zqmtsph
-draft table zqmtsphd
+persistent table zqmtspht
+draft table zqmtsphdt
 lock master
 total etag LastChangedAt
 authorization master ( global )
@@ -37,7 +37,7 @@ early numbering
 
   association _Item { create; with draft; }
 
-  mapping for zqmtsph
+  mapping for zqmtspht
   {
     DocNo              = doc_no;
     Version            = version;
@@ -56,8 +56,8 @@ early numbering
 }
 
 define behavior for ZI_QM_SPECITEM alias SpecItem
-persistent table zqmtspi
-draft table zqmtspid
+persistent table zqmtspit
+draft table zqmtspidt
 lock dependent by _Header
 authorization dependent by _Header
 etag master LocalLastChangedAt
@@ -77,7 +77,7 @@ early numbering
 
   association _Header { with draft; }
 
-  mapping for zqmtspi
+  mapping for zqmtspit
   {
     DocNo              = doc_no;
     Version            = version;

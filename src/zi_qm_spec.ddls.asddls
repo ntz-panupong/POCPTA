@@ -6,7 +6,7 @@
   dataClass: #MIXED
 }
 define root view entity ZI_QM_SPEC
-  as select from zqmtsph
+  as select from zqmtspht
   composition [0..*] of ZI_QM_SPECITEM as _Item
   association [0..1] to I_BusinessUserBasic as _BusinessUserCreatedBy
     on _BusinessUserCreatedBy.UserID = $projection.LocalCreatedBy

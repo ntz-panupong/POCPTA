@@ -7,8 +7,8 @@ abapGit repository for **Product Specification Form** (`ZPOCTESTTA`) on **SAP S/
 | Layer | Object | Description |
 | :--- | :--- | :--- |
 | **Package** | `ZPOCTESTTA` | Root package |
-| **Database Tables** | `ZQMTSPH` / `ZQMTSPI` | Header & Detail persistent tables |
-| **Draft Tables** | `ZQMTSPHD` / `ZQMTSPID` | Managed draft persistence tables |
+| **Database Tables** | `ZQMTSPHT` / `ZQMTSPIT` | Header & Detail persistent tables |
+| **Draft Tables** | `ZQMTSPHDT` / `ZQMTSPIDT` | Managed draft persistence tables |
 | **Interface CDS** | `ZI_QM_SPEC` / `ZI_QM_SPECITEM` | Root & Child interface view entities |
 | **Projection CDS** | `ZC_QM_SPEC` / `ZC_QM_SPECITEM` | Transactional consumption views |
 | **Metadata Extensions** | `ZC_QM_SPEC` / `ZC_QM_SPECITEM` | Fiori Elements List Report & Object Page UI |

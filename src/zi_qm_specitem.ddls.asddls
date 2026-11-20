@@ -6,7 +6,7 @@
   dataClass: #MIXED
 }
 define view entity ZI_QM_SPECITEM
-  as select from zqmtspi
+  as select from zqmtspit
   association to parent ZI_QM_SPEC as _Header
     on  $projection.DocNo   = _Header.DocNo
     and $projection.Version = _Header.Version

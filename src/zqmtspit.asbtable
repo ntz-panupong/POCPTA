@@ -3,7 +3,7 @@
 @AbapCatalog.tableCategory : #TRANSACTIONAL
 @AbapCatalog.deliveryClass : #A
 @AbapCatalog.dataMaintenance : #RESTRICTED
-define table zqmtspi {
+define table zqmtspit {
   key client            : mandt not null;
   key doc_no            : zelm_qm_spec_docno not null;
   key version           : zelm_qm_spec_version not null;
