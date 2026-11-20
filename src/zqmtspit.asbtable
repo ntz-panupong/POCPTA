@@ -5,20 +5,20 @@
 @AbapCatalog.dataMaintenance : #RESTRICTED
 define table zqmtspit {
   key client            : mandt not null;
-  key doc_no            : zelm_qm_spec_docno not null;
-  key version           : zelm_qm_spec_version not null;
-  key section_no        : zelm_qm_spec_secno not null;
-  key line_no           : zelm_qm_spec_lineno not null;
-  section_title         : zelm_qm_spec_sectitle;
-  col2_label            : zelm_qm_spec_collabel;
-  col3_label            : zelm_qm_spec_collabel;
-  topic                 : zelm_qm_spec_topic;
+  key doc_no            : zelm_qm_spec_docnot not null;
+  key version           : zelm_qm_spec_versiont not null;
+  key section_no        : zelm_qm_spec_secnot not null;
+  key line_no           : zelm_qm_spec_linenot not null;
+  section_title         : zelm_qm_spec_sectitlet;
+  col2_label            : zelm_qm_spec_collabelt;
+  col3_label            : zelm_qm_spec_collabelt;
+  topic                 : zelm_qm_spec_topict;
   topic_bold            : abap_boolean;
   topic_italic          : abap_boolean;
-  description           : zelm_qm_spec_descr;
+  description           : zelm_qm_spec_descrt;
   desc_bold             : abap_boolean;
   desc_italic           : abap_boolean;
-  method                : zelm_qm_spec_method;
+  method                : zelm_qm_spec_methodt;
   method_bold           : abap_boolean;
   method_italic         : abap_boolean;
   local_last_changed_at : abp_locinst_lastchange_tstmpl;

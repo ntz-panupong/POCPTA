@@ -1,0 +1,136 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName:       'Specification',
+    typeNamePlural: 'Specifications',
+    title:          { type: #STANDARD, value: 'ProductName' },
+    description:    { type: #STANDARD, value: 'DocNo' },
+    imageUrl:       'ImageContent'
+  },
+  presentationVariant: [ {
+    sortOrder:      [ { by: 'DocNo', direction: #DESC },
+                      { by: 'Version', direction: #DESC } ],
+    visualizations: [ { type: #AS_LINEITEM } ]
+  } ]
+}
+annotate entity ZC_QM_SPECT with
+{
+  @UI.facet: [
+    { id:              'General',
+      purpose:         #STANDARD,
+      type:            #FIELDGROUP_REFERENCE,
+      targetQualifier: 'General',
+      label:           'General Information',
+      position:        10 },
+    { id:              'Image',
+      purpose:         #STANDARD,
+      type:            #FIELDGROUP_REFERENCE,
+      targetQualifier: 'Image',
+      label:           'Product Image',
+      position:        20 },
+    { id:              'Items',
+      purpose:         #STANDARD,
+      type:            #LINEITEM_REFERENCE,
+      targetElement:   '_Item',
+      label:           'Specification Sections',
+      position:        30 },
+    { id:              'Admin',
+      purpose:         #STANDARD,
+      type:            #FIELDGROUP_REFERENCE,
+      targetQualifier: 'Admin',
+      label:           'Administrative Data',
+      position:        40 }
+  ]
+
+  @UI: {
+    lineItem:       [ { position: 10, importance: #HIGH },
+                      { type: #FOR_ACTION, dataAction: 'NewVersion', label: 'Create New Version', position: 10 },
+                      { type: #FOR_ACTION, dataAction: 'Copy', label: 'Copy', position: 20 },
+                      { type: #FOR_ACTION, dataAction: 'Print', label: 'Print Specification', position: 30 } ],
+    identification: [ { type: #FOR_ACTION, dataAction: 'NewVersion', label: 'Create New Version', position: 10 },
+                      { type: #FOR_ACTION, dataAction: 'Copy', label: 'Copy', position: 20 },
+                      { type: #FOR_ACTION, dataAction: 'Print', label: 'Print Specification', position: 30 },
+                      { type: #FOR_ACTION, dataAction: 'AddSection', label: 'Add Section', position: 40 } ],
+    selectionField: [ { position: 10 } ],
+    fieldGroup:     [ { qualifier: 'General', position: 10 } ]
+  }
+  @EndUserText.label: 'Document No.'
+  DocNo;
+
+  @UI: {
+    lineItem:       [ { position: 20, importance: #HIGH } ],
+    selectionField: [ { position: 20 } ],
+    fieldGroup:     [ { qualifier: 'General', position: 20 } ]
+  }
+  @EndUserText.label: 'Version'
+  Version;
+
+  @UI: {
+    lineItem:       [ { position: 30, importance: #HIGH } ],
+    selectionField: [ { position: 30 } ],
+    fieldGroup:     [ { qualifier: 'General', position: 30 } ]
+  }
+  @EndUserText.label: 'Product Code'
+  ProductCode;
+
+  @UI: {
+    lineItem:       [ { position: 40, importance: #HIGH } ],
+    selectionField: [ { position: 40 } ],
+    fieldGroup:     [ { qualifier: 'General', position: 40 } ]
+  }
+  @EndUserText.label: 'Product Name'
+  ProductName;
+
+  @UI: {
+    fieldGroup:     [ { qualifier: 'General', position: 50 } ],
+    multiLineText:  true
+  }
+  @EndUserText.label: 'Long Text'
+  LongText;
+
+  @UI: {
+    lineItem:   [ { position: 5, importance: #HIGH } ],
+    fieldGroup: [ { qualifier: 'Image', position: 10 } ]
+  }
+  @EndUserText.label: 'Product Image'
+  ImageContent;
+
+  @UI.hidden: true
+  ImageFilename;
+
+  @UI.hidden: true
+  ImageMimetype;
+
+  @UI: {
+    lineItem:       [ { position: 50, importance: #MEDIUM } ],
+    selectionField: [ { position: 50 } ],
+    fieldGroup:     [ { qualifier: 'Admin', position: 10 } ]
+  }
+  @EndUserText.label: 'Created By'
+  LocalCreatedBy;
+
+  @UI.hidden: true
+  CreatedByFullName;
+
+  @UI: {
+    lineItem:       [ { position: 60, importance: #MEDIUM } ],
+    selectionField: [ { position: 60 } ],
+    fieldGroup:     [ { qualifier: 'Admin', position: 20 } ]
+  }
+  @EndUserText.label: 'Created On'
+  LocalCreatedAt;
+
+  @UI.fieldGroup: [ { qualifier: 'Admin', position: 30 } ]
+  @EndUserText.label: 'Last Changed By'
+  LocalLastChangedBy;
+
+  @UI.hidden: true
+  ChangedByFullName;
+
+  @UI.fieldGroup: [ { qualifier: 'Admin', position: 40 } ]
+  @EndUserText.label: 'Last Changed On'
+  LocalLastChangedAt;
+
+  @UI.hidden: true
+  LastChangedAt;
+}

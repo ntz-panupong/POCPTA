@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DTEL" serializer_version="v1">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD04V>
+    <ROLLNAME>ZELM_QM_SPEC_IMGMIMET</ROLLNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>CHAR</DATATYPE>
+    <LENG>000128</LENG>
+    <OUTPUTLEN>000128</OUTPUTLEN>
+    <DDTEXT>Product Image MIME Type</DDTEXT>
+    <REPTEXT>Product Image MIME Type</REPTEXT>
+    <SCRTEXT_S>MIME Type</SCRTEXT_S>
+    <SCRTEXT_M>Image MIME Type</SCRTEXT_M>
+    <SCRTEXT_L>Product Image MIME Type</SCRTEXT_L>
+   </DD04V>
+  </asx:values>
+ </asx:abap>
+</abapGit>

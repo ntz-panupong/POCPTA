@@ -9,14 +9,14 @@ abapGit repository for **Product Specification Form** (`ZPOCTESTTA`) on **SAP S/
 | **Package** | `ZPOCTESTTA` | Root package |
 | **Database Tables** | `ZQMTSPHT` / `ZQMTSPIT` | Header & Detail persistent tables |
 | **Draft Tables** | `ZQMTSPHDT` / `ZQMTSPIDT` | Managed draft persistence tables |
-| **Interface CDS** | `ZI_QM_SPEC` / `ZI_QM_SPECITEM` | Root & Child interface view entities |
-| **Projection CDS** | `ZC_QM_SPEC` / `ZC_QM_SPECITEM` | Transactional consumption views |
-| **Metadata Extensions** | `ZC_QM_SPEC` / `ZC_QM_SPECITEM` | Fiori Elements List Report & Object Page UI |
-| **Behavior Definitions** | `ZI_QM_SPEC` / `ZC_QM_SPEC` | Managed + Draft + Early Numbering + Actions |
-| **Behavior Pool** | `ZBP_I_QM_SPEC` | EML handlers, validations, features |
-| **Business Logic** | `ZCL_QM_SPEC_ACTION` | Doc/Version numbering & clone helpers |
+| **Interface CDS** | `ZI_QM_SPECT` / `ZI_QM_SPECITEMT` | Root & Child interface view entities |
+| **Projection CDS** | `ZC_QM_SPECT` / `ZC_QM_SPECITEMT` | Transactional consumption views |
+| **Metadata Extensions** | `ZC_QM_SPECT` / `ZC_QM_SPECITEMT` | Fiori Elements List Report & Object Page UI |
+| **Behavior Definitions** | `ZI_QM_SPECT` / `ZC_QM_SPECT` | Managed + Draft + Early Numbering + Actions |
+| **Behavior Pool** | `ZBP_I_QM_SPECT` | EML handlers, validations, features |
+| **Business Logic** | `ZCL_QM_SPEC_ACTIONT` | Doc/Version numbering & clone helpers |
 | **Service Definition** | `ZSD_QM_SPEC_TOM_SRV` | Exposes `SpecHeader`, `SpecItem`, `BusinessUser` |
-| **Service Binding** | `ZSB_QM_SPEC_UI` | OData V4 - UI |
+| **Service Binding** | `ZSB_QM_SPEC_UIT` | OData V4 - UI |
 
 ## Implemented Features & Actions
 
@@ -36,4 +36,4 @@ abapGit repository for **Product Specification Form** (`ZPOCTESTTA`) on **SAP S/
    .\push_to_github.ps1 -RepoUrl "https://github.com/<your-username>/POCTESTTA.git"
    ```
 3. In **Eclipse ADT**, open **abapGit Repositories** -> **Link**, point to `POCTESTTA` and package `ZPOCTESTTA`, then **Pull**.
-4. Activate objects bottom-up (Tables -> CDS -> DDLX -> BDEF -> Classes -> SRVD -> SRVB) and **Publish** `ZSB_QM_SPEC_UI`.
+4. Activate objects bottom-up (Tables -> CDS -> DDLX -> BDEF -> Classes -> SRVD -> SRVB) and **Publish** `ZSB_QM_SPEC_UIT`.

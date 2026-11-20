@@ -5,14 +5,14 @@
 @AbapCatalog.dataMaintenance : #RESTRICTED
 define table zqmtspht {
   key client            : mandt not null;
-  key doc_no            : zelm_qm_spec_docno not null;
-  key version           : zelm_qm_spec_version not null;
-  product_code          : zelm_qm_spec_prodcode;
-  product_name          : zelm_qm_spec_prodname;
-  long_text             : zelm_qm_spec_longtxt;
-  image_filename        : zelm_qm_spec_imgname;
-  image_mimetype        : zelm_qm_spec_imgmime;
-  image_content         : zelm_qm_spec_imgcont;
+  key doc_no            : zelm_qm_spec_docnot not null;
+  key version           : zelm_qm_spec_versiont not null;
+  product_code          : zelm_qm_spec_prodcodet;
+  product_name          : zelm_qm_spec_prodnamet;
+  long_text             : zelm_qm_spec_longtxtt;
+  image_filename        : zelm_qm_spec_imgnamet;
+  image_mimetype        : zelm_qm_spec_imgmimet;
+  image_content         : zelm_qm_spec_imgcontt;
   local_created_by      : abp_creation_user;
   local_created_at      : abp_creation_tstmpl;
   local_last_changed_by : abp_locinst_lastchange_user;
