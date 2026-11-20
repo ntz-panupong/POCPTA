@@ -24,6 +24,7 @@ define root view entity ZI_QM_SPEC
       @Semantics.largeObject: {
         mimeType: 'ImageMimetype',
         fileName: 'ImageFilename',
+        acceptableMimeTypes: [ 'image/jpeg', 'image/png', 'image/gif', 'image/svg+xml', 'image/webp' ],
         contentDispositionPreference: #INLINE
       }
       image_content         as ImageContent,

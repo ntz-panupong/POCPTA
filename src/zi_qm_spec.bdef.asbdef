@@ -31,8 +31,9 @@ early numbering
   action ( features : instance ) NewVersion result [1] $self;
   action ( features : instance ) Copy result [1] $self;
   action ( features : instance ) Print result [1] $self;
+  action ( features : instance ) AddSection parameter ZA_QM_SPEC_ADDSEC result [1] $self;
 
-  validation ValidateHeader on save { create; update; field ProductCode, ProductName, ImageContent; }
+  validation ValidateHeader on save { create; update; field ProductCode, ProductName, ImageContent, ImageMimetype; }
 
   association _Item { create; with draft; }
 
@@ -67,6 +68,10 @@ early numbering
 
   field ( readonly ) DocNo, Version, SectionNo, LineNo, LocalLastChangedAt;
   field ( mandatory ) SectionTitle;
+
+  action ( features : instance ) AddRow result [1] $self;
+  action ( features : instance ) MoveUp result [1] $self;
+  action ( features : instance ) MoveDown result [1] $self;
 
   validation ValidateItem on save { create; update; field SectionTitle; }
 

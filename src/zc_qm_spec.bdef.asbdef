@@ -17,6 +17,7 @@ define behavior for ZC_QM_SPEC alias SpecHeader
   use action NewVersion;
   use action Copy;
   use action Print;
+  use action AddSection;
 
   use association _Item { create; with draft; }
 }
@@ -25,6 +26,10 @@ define behavior for ZC_QM_SPECITEM alias SpecItem
 {
   use update;
   use delete;
+
+  use action AddRow;
+  use action MoveUp;
+  use action MoveDown;
 
   use association _Header { with draft; }
 }

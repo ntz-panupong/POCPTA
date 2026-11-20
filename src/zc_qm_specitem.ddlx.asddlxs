@@ -36,7 +36,10 @@ annotate entity ZC_QM_SPECITEM with
   Version;
 
   @UI: {
-    lineItem:   [ { position: 10, importance: #HIGH } ],
+    lineItem:   [ { position: 10, importance: #HIGH },
+                  { type: #FOR_ACTION, dataAction: 'AddRow', label: 'Add Row', position: 10 },
+                  { type: #FOR_ACTION, dataAction: 'MoveUp', label: 'Move Up', position: 20 },
+                  { type: #FOR_ACTION, dataAction: 'MoveDown', label: 'Move Down', position: 30 } ],
     fieldGroup: [ { qualifier: 'LineDetail', position: 10 } ]
   }
   @EndUserText.label: 'Section No.'

@@ -44,6 +44,18 @@
      <MSGNR>006</MSGNR>
      <TEXT>Print Specification triggered for &amp;1 v&amp;2</TEXT>
     </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_SPEC</ARBGB>
+     <MSGNR>007</MSGNR>
+     <TEXT>Product image must be an image file (JPEG, PNG, GIF, SVG, WEBP)</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_SPEC</ARBGB>
+     <MSGNR>008</MSGNR>
+     <TEXT>Cannot move row further in this section</TEXT>
+    </item>
    </T100>
   </asx:values>
  </asx:abap>

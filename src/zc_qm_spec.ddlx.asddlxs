@@ -4,7 +4,8 @@
     typeName:       'Specification',
     typeNamePlural: 'Specifications',
     title:          { type: #STANDARD, value: 'ProductName' },
-    description:    { type: #STANDARD, value: 'DocNo' }
+    description:    { type: #STANDARD, value: 'DocNo' },
+    imageUrl:       'ImageContent'
   },
   presentationVariant: [ {
     sortOrder:      [ { by: 'DocNo', direction: #DESC },
@@ -48,7 +49,8 @@ annotate entity ZC_QM_SPEC with
                       { type: #FOR_ACTION, dataAction: 'Print', label: 'Print Specification', position: 30 } ],
     identification: [ { type: #FOR_ACTION, dataAction: 'NewVersion', label: 'Create New Version', position: 10 },
                       { type: #FOR_ACTION, dataAction: 'Copy', label: 'Copy', position: 20 },
-                      { type: #FOR_ACTION, dataAction: 'Print', label: 'Print Specification', position: 30 } ],
+                      { type: #FOR_ACTION, dataAction: 'Print', label: 'Print Specification', position: 30 },
+                      { type: #FOR_ACTION, dataAction: 'AddSection', label: 'Add Section', position: 40 } ],
     selectionField: [ { position: 10 } ],
     fieldGroup:     [ { qualifier: 'General', position: 10 } ]
   }
@@ -86,7 +88,10 @@ annotate entity ZC_QM_SPEC with
   @EndUserText.label: 'Long Text'
   LongText;
 
-  @UI.fieldGroup: [ { qualifier: 'Image', position: 10 } ]
+  @UI: {
+    lineItem:   [ { position: 5, importance: #HIGH } ],
+    fieldGroup: [ { qualifier: 'Image', position: 10 } ]
+  }
   @EndUserText.label: 'Product Image'
   ImageContent;
 

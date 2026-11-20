@@ -198,6 +198,13 @@ CLASS zcl_qm_spec_action IMPLEMENTATION.
           FIELDS MAX( Version ) AS max_ver
           WHERE DocNo = @ls_hdr-DocNo
           INTO @DATA(lv_max_ver).
+        SELECT FROM zqmtsphd
+          FIELDS MAX( version ) AS max_draft_ver
+          WHERE doc_no = @ls_hdr-DocNo
+          INTO @DATA(lv_max_draft_ver).
+        IF lv_max_draft_ver > lv_max_ver.
+          lv_max_ver = lv_max_draft_ver.
+        ENDIF.
         lv_target_ver = CONV zelm_qm_spec_version( lv_max_ver + 1 ).
       ENDIF.
 
