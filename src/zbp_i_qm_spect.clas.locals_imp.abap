@@ -342,8 +342,8 @@ CLASS lhc_specitem DEFINITION INHERITING FROM cl_abap_behavior_handler.
       IMPORTING keys FOR ACTION SpecItem~MoveDown RESULT result.
 
     TYPES:
-      tt_item_keys   TYPE TABLE FOR ACTION IMPORT zi_qm_spect\SpecItem~MoveUp,
-      tt_item_result TYPE TABLE FOR ACTION RESULT zi_qm_spect\SpecItem~MoveUp.
+      tt_item_keys   TYPE TABLE FOR ACTION IMPORT zi_qm_specitemt~MoveUp,
+      tt_item_result TYPE TABLE FOR ACTION RESULT zi_qm_specitemt~MoveUp.
 
     METHODS move_row
       IMPORTING it_keys   TYPE tt_item_keys
