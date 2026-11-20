@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_MSAG" serializer_version="v1.0.0">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <T100A>
+    <ARBGB>ZQM_SPEC</ARBGB>
+    <MASTERLANG>E</MASTERLANG>
+    <STOTAL>X</STOTAL>
+   </T100A>
+   <T100>
+    <item>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_SPEC</ARBGB>
+     <MSGNR>001</MSGNR>
+     <TEXT>Fill in Product Code and Product Name</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_SPEC</ARBGB>
+     <MSGNR>002</MSGNR>
+     <TEXT>Every section needs a Section Title</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_SPEC</ARBGB>
+     <MSGNR>003</MSGNR>
+     <TEXT>Product image size must not exceed 2 MB</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_SPEC</ARBGB>
+     <MSGNR>004</MSGNR>
+     <TEXT>Specification &amp;1 Version &amp;2 created</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_SPEC</ARBGB>
+     <MSGNR>005</MSGNR>
+     <TEXT>Specification &amp;1 copied to &amp;2 Version 001</TEXT>
+    </item>
+    <item>
+     <SPRSL>E</SPRSL>
+     <ARBGB>ZQM_SPEC</ARBGB>
+     <MSGNR>006</MSGNR>
+     <TEXT>Print Specification triggered for &amp;1 v&amp;2</TEXT>
+    </item>
+   </T100>
+  </asx:values>
+ </asx:abap>
+</abapGit>

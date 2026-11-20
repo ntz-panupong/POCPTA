@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DTEL" serializer_version="v1">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD04V>
+    <ROLLNAME>ZELM_QM_SPEC_DOCNO</ROLLNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>NUMC</DATATYPE>
+    <LENG>000010</LENG>
+    <OUTPUTLEN>000010</OUTPUTLEN>
+    <DDTEXT>Specification Document No.</DDTEXT>
+    <REPTEXT>Specification Document No.</REPTEXT>
+    <SCRTEXT_S>Doc. No.</SCRTEXT_S>
+    <SCRTEXT_M>Document No.</SCRTEXT_M>
+    <SCRTEXT_L>Specification Document No.</SCRTEXT_L>
+   </DD04V>
+  </asx:values>
+ </asx:abap>
+</abapGit>

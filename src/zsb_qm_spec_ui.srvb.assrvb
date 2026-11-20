@@ -1,0 +1,5 @@
+@EndUserText.label: 'Specification Form UI Binding'
+define service binding ZSB_QM_SPEC_UI {
+  binding type odata_v4_ui;
+  service ZSD_QM_SPEC_SRV;
+}

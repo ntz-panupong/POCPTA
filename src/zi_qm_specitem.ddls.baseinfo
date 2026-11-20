@@ -1,0 +1,15 @@
+{
+"BASEINFO": {
+"FROM": [
+"ZQMTSPI"
+],
+"ASSOCIATED": [
+"ZI_QM_SPEC"
+],
+"BASE": [],
+"ANNO_REF": [],
+"SCALAR_FUNCTION": [],
+"VERSION": 0,
+"ANNOREF_EVALUATION_ERROR": ""
+}
+}

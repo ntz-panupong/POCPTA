@@ -1,0 +1,6 @@
+@EndUserText.label: 'Specification Form Service'
+define service ZSD_QM_SPEC_SRV {
+  expose ZC_QM_SPEC       as SpecHeader;
+  expose ZC_QM_SPECITEM   as SpecItem;
+  expose I_BusinessUserVH as BusinessUser;
+}

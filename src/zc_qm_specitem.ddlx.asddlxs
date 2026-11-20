@@ -1,0 +1,121 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName:       'Specification Line',
+    typeNamePlural: 'Specification Lines',
+    title:          { type: #STANDARD, value: 'Topic' },
+    description:    { type: #STANDARD, value: 'SectionTitle' }
+  },
+  presentationVariant: [ {
+    sortOrder:      [ { by: 'SectionNo', direction: #ASC },
+                      { by: 'LineNo', direction: #ASC } ],
+    visualizations: [ { type: #AS_LINEITEM } ]
+  } ]
+}
+annotate entity ZC_QM_SPECITEM with
+{
+  @UI.facet: [
+    { id:              'LineDetail',
+      purpose:         #STANDARD,
+      type:            #FIELDGROUP_REFERENCE,
+      targetQualifier: 'LineDetail',
+      label:           'Specification Details',
+      position:        10 },
+    { id:              'Formatting',
+      purpose:         #STANDARD,
+      type:            #FIELDGROUP_REFERENCE,
+      targetQualifier: 'Formatting',
+      label:           'Text Formatting',
+      position:        20 }
+  ]
+
+  @UI.hidden: true
+  DocNo;
+
+  @UI.hidden: true
+  Version;
+
+  @UI: {
+    lineItem:   [ { position: 10, importance: #HIGH } ],
+    fieldGroup: [ { qualifier: 'LineDetail', position: 10 } ]
+  }
+  @EndUserText.label: 'Section No.'
+  SectionNo;
+
+  @UI: {
+    lineItem:   [ { position: 20, importance: #HIGH } ],
+    fieldGroup: [ { qualifier: 'LineDetail', position: 20 } ]
+  }
+  @EndUserText.label: 'Section Title'
+  SectionTitle;
+
+  @UI: {
+    lineItem:   [ { position: 30, importance: #HIGH } ],
+    fieldGroup: [ { qualifier: 'LineDetail', position: 30 } ]
+  }
+  @EndUserText.label: 'Line No.'
+  LineNo;
+
+  @UI: {
+    lineItem:   [ { position: 40, importance: #HIGH } ],
+    fieldGroup: [ { qualifier: 'LineDetail', position: 40 } ]
+  }
+  @EndUserText.label: 'Topic'
+  Topic;
+
+  @UI: {
+    lineItem:      [ { position: 50, importance: #HIGH } ],
+    fieldGroup:    [ { qualifier: 'LineDetail', position: 50 } ],
+    multiLineText: true
+  }
+  @EndUserText.label: 'Standard / Description'
+  Description;
+
+  @UI: {
+    lineItem:   [ { position: 60, importance: #HIGH } ],
+    fieldGroup: [ { qualifier: 'LineDetail', position: 60 } ]
+  }
+  @EndUserText.label: 'Method'
+  Method;
+
+  @UI: {
+    lineItem:   [ { position: 70, importance: #LOW } ],
+    fieldGroup: [ { qualifier: 'LineDetail', position: 70 } ]
+  }
+  @EndUserText.label: 'Column 2 Label'
+  Col2Label;
+
+  @UI: {
+    lineItem:   [ { position: 80, importance: #LOW } ],
+    fieldGroup: [ { qualifier: 'LineDetail', position: 80 } ]
+  }
+  @EndUserText.label: 'Column 3 Label'
+  Col3Label;
+
+  @UI.fieldGroup: [ { qualifier: 'Formatting', position: 10 } ]
+  @EndUserText.label: 'Topic Bold'
+  TopicBold;
+
+  @UI.fieldGroup: [ { qualifier: 'Formatting', position: 20 } ]
+  @EndUserText.label: 'Topic Italic'
+  TopicItalic;
+
+  @UI.fieldGroup: [ { qualifier: 'Formatting', position: 30 } ]
+  @EndUserText.label: 'Description Bold'
+  DescBold;
+
+  @UI.fieldGroup: [ { qualifier: 'Formatting', position: 40 } ]
+  @EndUserText.label: 'Description Italic'
+  DescItalic;
+
+  @UI.fieldGroup: [ { qualifier: 'Formatting', position: 50 } ]
+  @EndUserText.label: 'Method Bold'
+  MethodBold;
+
+  @UI.fieldGroup: [ { qualifier: 'Formatting', position: 60 } ]
+  @EndUserText.label: 'Method Italic'
+  MethodItalic;
+
+  @UI.hidden: true
+  LocalLastChangedAt;
+}

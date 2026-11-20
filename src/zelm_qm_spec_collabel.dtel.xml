@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<abapGit version="v1.0.0" serializer="LCL_OBJECT_DTEL" serializer_version="v1">
+ <asx:abap xmlns:asx="http://www.sap.com/abapxml" version="1.0">
+  <asx:values>
+   <DD04V>
+    <ROLLNAME>ZELM_QM_SPEC_COLLABEL</ROLLNAME>
+    <DDLANGUAGE>E</DDLANGUAGE>
+    <DATATYPE>CHAR</DATATYPE>
+    <LENG>000040</LENG>
+    <OUTPUTLEN>000040</OUTPUTLEN>
+    <DDTEXT>Column Heading Label</DDTEXT>
+    <REPTEXT>Column Heading Label</REPTEXT>
+    <SCRTEXT_S>Col Label</SCRTEXT_S>
+    <SCRTEXT_M>Column Label</SCRTEXT_M>
+    <SCRTEXT_L>Column Heading Label</SCRTEXT_L>
+   </DD04V>
+  </asx:values>
+ </asx:abap>
+</abapGit>

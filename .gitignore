@@ -1,0 +1,4 @@
+# Local / IDE
+.DS_Store
+Thumbs.db
+*.log
